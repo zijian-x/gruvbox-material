@@ -558,86 +558,244 @@ if ((has('termguicolors') && &termguicolors) || has('gui_running')) && !s:config
 endif
 " }}}
 " Plugins: {{{
-" neoclide/coc.nvim {{{
-call gruvbox_material#highlight('CocHoverRange', s:palette.none, s:palette.none, 'bold,underline')
-call gruvbox_material#highlight('CocSearch', s:palette.green, s:palette.none, 'bold')
-call gruvbox_material#highlight('CocPumSearch', s:palette.green, s:palette.none, 'bold')
-call gruvbox_material#highlight('CocMarkdownHeader', s:palette.orange, s:palette.none, 'bold')
-call gruvbox_material#highlight('CocMarkdownLink', s:palette.green, s:palette.none, 'underline')
-highlight! link CocMarkdownCode Green
-highlight! link CocPumShortcut Grey
-highlight! link CocPumVirtualText Grey
-highlight! link CocPumMenu Pmenu
-highlight! link CocMenuSel PmenuSel
-highlight! link CocDisabled Grey
-highlight! link CocSnippetVisual DiffAdd
-highlight! link CocInlayHint LineNr
-highlight! link CocNotificationProgress Green
-highlight! link CocNotificationButton PmenuSel
-highlight! link CocSemClass TSType
-highlight! link CocSemEnum TSType
-highlight! link CocSemInterface TSType
-highlight! link CocSemStruct TSType
-highlight! link CocSemTypeParameter TSType
-highlight! link CocSemVariable TSVariable
-highlight! link CocSemEnumMember TSProperty
-highlight! link CocSemEvent TSLabel
-highlight! link CocSemModifier TSOperator
-highlight! link CocErrorFloat ErrorFloat
-highlight! link CocWarningFloat WarningFloat
-highlight! link CocInfoFloat InfoFloat
-highlight! link CocHintFloat HintFloat
-highlight! link CocFloatDividingLine Grey
-highlight! link CocErrorHighlight ErrorText
-highlight! link CocWarningHighlight WarningText
-highlight! link CocInfoHighlight InfoText
-highlight! link CocHintHighlight HintText
-highlight! link CocHighlightText CurrentWord
-highlight! link CocHoverRange CurrentWord
-highlight! link CocErrorSign RedSign
-highlight! link CocWarningSign YellowSign
-highlight! link CocInfoSign BlueSign
-highlight! link CocHintSign GreenSign
-highlight! link CocWarningVirtualText VirtualTextWarning
-highlight! link CocErrorVirtualText VirtualTextError
-highlight! link CocInfoVirtualText VirtualTextInfo
-highlight! link CocHintVirtualText VirtualTextHint
-highlight! link CocErrorLine ErrorLine
-highlight! link CocWarningLine WarningLine
-highlight! link CocInfoLine InfoLine
-highlight! link CocHintLine HintLine
-highlight! link CocCodeLens Grey
-highlight! link CocFadeOut Grey
-highlight! link CocStrikeThrough Grey
-highlight! link CocListMode StatusLine
-highlight! link CocListPath StatusLine
-highlight! link CocSelectedText Orange
-highlight! link CocListsLine Fg
-highlight! link CocListsDesc Grey
-highlight! link HighlightedyankRegion Visual
-highlight! link CocGitAddedSign GreenSign
-highlight! link CocGitChangeRemovedSign PurpleSign
-highlight! link CocGitChangedSign BlueSign
-highlight! link CocGitRemovedSign RedSign
-highlight! link CocGitTopRemovedSign RedSign
+" nvim-treesitter/nvim-treesitter {{{
+call gruvbox_material#highlight('TSStrong', s:palette.none, s:palette.none, 'bold')
+call gruvbox_material#highlight('TSEmphasis', s:palette.none, s:palette.none, 'italic')
+call gruvbox_material#highlight('TSUnderline', s:palette.none, s:palette.none, 'underline')
+call gruvbox_material#highlight('TSNote', s:palette.bg0, s:palette.green, 'bold')
+call gruvbox_material#highlight('TSWarning', s:palette.bg0, s:palette.yellow, 'bold')
+call gruvbox_material#highlight('TSDanger', s:palette.bg0, s:palette.red, 'bold')
+highlight! link TSAnnotation Purple
+highlight! link TSAttribute Purple
+highlight! link TSBoolean Purple
+highlight! link TSCharacter Aqua
+highlight! link TSCharacterSpecial SpecialChar
+highlight! link TSComment Comment
+highlight! link TSConditional Red
+highlight! link TSConstBuiltin PurpleItalic
+highlight! link TSConstMacro PurpleItalic
+highlight! link TSConstant Fg
+highlight! link TSConstructor GreenBold
+highlight! link TSDebug Debug
+highlight! link TSDefine Define
+highlight! link TSEnvironment Macro
+highlight! link TSEnvironmentName Type
+highlight! link TSError Error
+highlight! link TSException Red
+highlight! link TSField Blue
+highlight! link TSFloat Purple
+highlight! link TSFuncBuiltin GreenBold
+highlight! link TSFuncMacro GreenBold
+highlight! link TSFunction GreenBold
+highlight! link TSFunctionCall GreenBold
+highlight! link TSInclude Red
+highlight! link TSKeyword Red
+highlight! link TSKeywordFunction Red
+highlight! link TSKeywordOperator Orange
+highlight! link TSKeywordReturn Red
+highlight! link TSLabel Orange
+highlight! link TSLiteral String
+highlight! link TSMath Blue
+highlight! link TSMethod GreenBold
+highlight! link TSMethodCall GreenBold
+highlight! link TSNamespace YellowItalic
+highlight! link TSNone Fg
+highlight! link TSNumber Purple
+highlight! link TSOperator Orange
+highlight! link TSParameter Fg
+highlight! link TSParameterReference Fg
+highlight! link TSPreProc PreProc
+highlight! link TSProperty Blue
+highlight! link TSPunctBracket Fg
+highlight! link TSPunctDelimiter Grey
+highlight! link TSPunctSpecial Blue
+highlight! link TSRepeat Red
+highlight! link TSStorageClass Orange
+highlight! link TSStorageClassLifetime Orange
+highlight! link TSStrike Grey
+highlight! link TSString Aqua
+highlight! link TSStringEscape Green
+highlight! link TSStringRegex Green
+highlight! link TSStringSpecial SpecialChar
+highlight! link TSSymbol Fg
+highlight! link TSTag Orange
+highlight! link TSTagAttribute Green
+highlight! link TSTagDelimiter Green
+highlight! link TSText Green
+highlight! link TSTextReference Constant
+highlight! link TSTitle Title
+highlight! link TSTodo Todo
+highlight! link TSType YellowItalic
+highlight! link TSTypeBuiltin YellowItalic
+highlight! link TSTypeDefinition YellowItalic
+highlight! link TSTypeQualifier Orange
+highlight! link TSURI markdownUrl
+highlight! link TSVariable Fg
+highlight! link TSVariableBuiltin PurpleItalic
+if has('nvim-0.8.0')
+  highlight! link @annotation TSAnnotation
+  highlight! link @attribute TSAttribute
+  highlight! link @boolean TSBoolean
+  highlight! link @character TSCharacter
+  highlight! link @character.special TSCharacterSpecial
+  highlight! link @comment TSComment
+  highlight! link @conceal Grey
+  highlight! link @conditional TSConditional
+  highlight! link @constant TSConstant
+  highlight! link @constant.builtin TSConstBuiltin
+  highlight! link @constant.macro TSConstMacro
+  highlight! link @constructor TSConstructor
+  highlight! link @debug TSDebug
+  highlight! link @define TSDefine
+  highlight! link @error TSError
+  highlight! link @exception TSException
+  highlight! link @field TSField
+  highlight! link @float TSFloat
+  highlight! link @function TSFunction
+  highlight! link @function.builtin TSFuncBuiltin
+  highlight! link @function.call TSFunctionCall
+  highlight! link @function.macro TSFuncMacro
+  highlight! link @include TSInclude
+  highlight! link @keyword TSKeyword
+  highlight! link @keyword.function TSKeywordFunction
+  highlight! link @keyword.operator TSKeywordOperator
+  highlight! link @keyword.return TSKeywordReturn
+  highlight! link @label TSLabel
+  highlight! link @math TSMath
+  highlight! link @method TSMethod
+  highlight! link @method.call TSMethodCall
+  highlight! link @namespace TSNamespace
+  highlight! link @none TSNone
+  highlight! link @number TSNumber
+  highlight! link @operator TSOperator
+  highlight! link @parameter TSParameter
+  highlight! link @parameter.reference TSParameterReference
+  highlight! link @preproc TSPreProc
+  highlight! link @property TSProperty
+  highlight! link @punctuation.bracket TSPunctBracket
+  highlight! link @punctuation.delimiter TSPunctDelimiter
+  highlight! link @punctuation.special TSPunctSpecial
+  highlight! link @repeat TSRepeat
+  highlight! link @storageclass TSStorageClass
+  highlight! link @storageclass.lifetime TSStorageClassLifetime
+  highlight! link @strike TSStrike
+  highlight! link @string TSString
+  highlight! link @string.escape TSStringEscape
+  highlight! link @string.regex TSStringRegex
+  highlight! link @string.special TSStringSpecial
+  highlight! link @symbol TSSymbol
+  highlight! link @tag TSTag
+  highlight! link @tag.attribute TSTagAttribute
+  highlight! link @tag.delimiter TSTagDelimiter
+  highlight! link @text TSText
+  highlight! link @text.danger TSDanger
+  highlight! link @text.diff.add diffAdded
+  highlight! link @text.diff.delete diffRemoved
+  highlight! link @text.emphasis TSEmphasis
+  highlight! link @text.environment TSEnvironment
+  highlight! link @text.environment.name TSEnvironmentName
+  highlight! link @text.literal TSLiteral
+  highlight! link @text.math TSMath
+  highlight! link @text.note TSNote
+  highlight! link @text.reference TSTextReference
+  highlight! link @text.strike TSStrike
+  highlight! link @text.strong TSStrong
+  highlight! link @text.title TSTitle
+  highlight! link @text.todo TSTodo
+  highlight! link @text.todo.checked Green
+  highlight! link @text.todo.unchecked Ignore
+  highlight! link @text.underline TSUnderline
+  highlight! link @text.uri TSURI
+  highlight! link @text.warning TSWarning
+  highlight! link @todo TSTodo
+  highlight! link @type TSType
+  highlight! link @type.builtin TSTypeBuiltin
+  highlight! link @type.definition TSTypeDefinition
+  highlight! link @type.qualifier TSTypeQualifier
+  highlight! link @uri TSURI
+  highlight! link @variable TSVariable
+  highlight! link @variable.builtin TSVariableBuiltin
+endif
+if has('nvim-0.9.0')
+  highlight! link @lsp.type.class TSType
+  highlight! link @lsp.type.comment TSComment
+  highlight! link @lsp.type.decorator TSFunction
+  highlight! link @lsp.type.enum TSType
+  highlight! link @lsp.type.enumMember TSProperty
+  highlight! link @lsp.type.events TSLabel
+  highlight! link @lsp.type.function TSFunction
+  highlight! link @lsp.type.interface TSType
+  highlight! link @lsp.type.keyword TSKeyword
+  highlight! link @lsp.type.macro TSConstMacro
+  highlight! link @lsp.type.method TSMethod
+  highlight! link @lsp.type.modifier TSTypeQualifier
+  highlight! link @lsp.type.namespace TSNamespace
+  highlight! link @lsp.type.number TSNumber
+  highlight! link @lsp.type.operator TSOperator
+  highlight! link @lsp.type.parameter TSParameter
+  highlight! link @lsp.type.property TSProperty
+  highlight! link @lsp.type.regexp TSStringRegex
+  highlight! link @lsp.type.string TSString
+  highlight! link @lsp.type.struct TSType
+  highlight! link @lsp.type.type TSType
+  highlight! link @lsp.type.typeParameter TSTypeDefinition
+  highlight! link @lsp.type.variable TSVariable
+  highlight! link DiagnosticUnnecessary WarningText
+endif
+highlight! link TSModuleInfoGood Green
+highlight! link TSModuleInfoBad Red
 " }}}
-" junegunn/fzf.vim {{{
-let g:fzf_colors = {
-      \ 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
-      \ 'hl':      ['fg', 'Green'],
-      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-      \ 'hl+':     ['fg', 'Aqua'],
-      \ 'info':    ['fg', 'Aqua'],
-      \ 'border':  ['fg', 'Grey'],
-      \ 'prompt':  ['fg', 'Orange'],
-      \ 'pointer': ['fg', 'Blue'],
-      \ 'marker':  ['fg', 'Yellow'],
-      \ 'spinner': ['fg', 'Yellow'],
-      \ 'header':  ['fg', 'Grey']
-      \ }
+" voldikss/vim-floaterm {{{
+highlight! link FloatermBorder Grey
 " }}}
+if has('nvim')
+" hrsh7th/nvim-cmp {{{
+call gruvbox_material#highlight('CmpItemAbbrMatch', s:palette.green, s:palette.none, 'bold')
+call gruvbox_material#highlight('CmpItemAbbrMatchFuzzy', s:palette.green, s:palette.none, 'bold')
+highlight! link CmpItemAbbr Fg
+highlight! link CmpItemAbbrDeprecated Grey
+highlight! link CmpItemMenu Fg
+highlight! link CmpItemKind Yellow
+for kind in g:gruvbox_material_lsp_kind_color
+  execute "highlight! link CmpItemKind" . kind[0] . " " . kind[1]
+endfor
+" }}}
+" nvim-telescope/telescope.nvim {{{
+call gruvbox_material#highlight('TelescopeMatching', s:palette.green, s:palette.none, 'bold')
+highlight! link TelescopeBorder Grey
+highlight! link TelescopePromptPrefix Orange
+highlight! link TelescopeSelection DiffAdd
+" }}}
+" lewis6991/gitsigns.nvim {{{
+highlight! link GitSignsAdd GreenSign
+highlight! link GitSignsChange BlueSign
+highlight! link GitSignsDelete RedSign
+highlight! link GitSignsAddNr Green
+highlight! link GitSignsChangeNr Blue
+highlight! link GitSignsDeleteNr Red
+highlight! link GitSignsAddLn DiffAdd
+highlight! link GitSignsChangeLn DiffChange
+highlight! link GitSignsDeleteLn DiffDelete
+highlight! link GitSignsCurrentLineBlame Grey
+" }}}
+" rcarriga/nvim-dap-ui {{{
+call gruvbox_material#highlight('DapUIModifiedValue', s:palette.blue, s:palette.none, 'bold')
+call gruvbox_material#highlight('DapUIBreakpointsCurrentLine', s:palette.blue, s:palette.none, 'bold')
+highlight! link DapUIScope Blue
+highlight! link DapUIType Purple
+highlight! link DapUIDecoration Blue
+highlight! link DapUIThread Green
+highlight! link DapUIStoppedThread Blue
+highlight! link DapUISource Purple
+highlight! link DapUILineNumber Blue
+highlight! link DapUIFloatBorder Blue
+highlight! link DapUIWatchesEmpty Red
+highlight! link DapUIWatchesValue Green
+highlight! link DapUIWatchesError Red
+highlight! link DapUIBreakpointsPath Blue
+highlight! link DapUIBreakpointsInfo Green
+" }}}
+endif
 " }}}
 " Extended File Types: {{{
 " Whitelist: {{{ File type optimizations that will always be loaded.
@@ -670,101 +828,23 @@ else
     finish
   endif
 endif
-" syn_begin: vim-plug {{{
-" https://github.com/junegunn/vim-plug
-call gruvbox_material#highlight('plug1', s:palette.orange, s:palette.none, 'bold')
-call gruvbox_material#highlight('plugNumber', s:palette.yellow, s:palette.none, 'bold')
-highlight! link plug2 Green
-highlight! link plugBracket Grey
-highlight! link plugName Aqua
-highlight! link plugDash Orange
-highlight! link plugError Red
-highlight! link plugNotLoaded Grey
-highlight! link plugRelDate Grey
-highlight! link plugH2 Orange
-highlight! link plugMessage Orange
-highlight! link plugStar Red
-highlight! link plugUpdate Blue
-highlight! link plugDeleted Grey
-highlight! link plugEdge Yellow
-highlight! link plugSha Green
-" syn_end }}}
-" syn_begin: coctree {{{
-" https://github.com/neoclide/coc.nvim
-highlight! link CocTreeOpenClose Aqua
-highlight! link CocTreeDescription Grey
-for kind in g:gruvbox_material_lsp_kind_color
-  execute "highlight! link CocSymbol" . kind[0] . " " . kind[1]
-endfor
-" syn_end }}}
-" syn_begin: coc-explorer {{{
-" https://github.com/weirongxu/coc-explorer
-highlight! link CocExplorerBufferRoot Orange
-highlight! link CocExplorerBufferExpandIcon Aqua
-highlight! link CocExplorerBufferBufnr Purple
-highlight! link CocExplorerBufferModified Yellow
-highlight! link CocExplorerBufferReadonly Red
-highlight! link CocExplorerBufferBufname Grey
-highlight! link CocExplorerBufferFullpath Grey
-highlight! link CocExplorerFileRoot Orange
-highlight! link CocExplorerFileRootName Green
-highlight! link CocExplorerFileExpandIcon Aqua
-highlight! link CocExplorerFileFullpath Grey
-highlight! link CocExplorerFileDirectory Green
-highlight! link CocExplorerFileGitStaged Purple
-highlight! link CocExplorerFileGitUnstaged Yellow
-highlight! link CocExplorerFileGitRootStaged Purple
-highlight! link CocExplorerFileGitRootUnstaged Yellow
-highlight! link CocExplorerGitPathChange Fg
-highlight! link CocExplorerGitContentChange Fg
-highlight! link CocExplorerGitRenamed Purple
-highlight! link CocExplorerGitCopied Fg
-highlight! link CocExplorerGitAdded Green
-highlight! link CocExplorerGitUntracked Blue
-highlight! link CocExplorerGitUnmodified Fg
-highlight! link CocExplorerGitUnmerged Orange
-highlight! link CocExplorerGitMixed Aqua
-highlight! link CocExplorerGitModified Yellow
-highlight! link CocExplorerGitDeleted Red
-highlight! link CocExplorerGitIgnored Grey
-highlight! link CocExplorerFileSize Blue
-highlight! link CocExplorerTimeAccessed Aqua
-highlight! link CocExplorerTimeCreated Aqua
-highlight! link CocExplorerTimeModified Aqua
-highlight! link CocExplorerIndentLine Conceal
-highlight! link CocExplorerHelpDescription Grey
-highlight! link CocExplorerHelpHint Grey
-highlight! link CocExplorerDiagnosticError Red
-highlight! link CocExplorerDiagnosticWarning Yellow
-highlight! link CocExplorerFileHidden Grey
-" syn_end }}}
-" syn_begin: octo {{{
-" https://github.com/pwntester/octo.nvim
-call gruvbox_material#highlight('OctoViewer', s:palette.bg0, s:palette.blue)
-call gruvbox_material#highlight('OctoGreenFloat', s:palette.green, s:palette.bg3)
-call gruvbox_material#highlight('OctoRedFloat', s:palette.red, s:palette.bg3)
-call gruvbox_material#highlight('OctoPurpleFloat', s:palette.purple, s:palette.bg3)
-call gruvbox_material#highlight('OctoYellowFloat', s:palette.yellow, s:palette.bg3)
-call gruvbox_material#highlight('OctoBlueFloat', s:palette.blue, s:palette.bg3)
-call gruvbox_material#highlight('OctoGreyFloat', s:palette.grey1, s:palette.bg3)
-call gruvbox_material#highlight('OctoBubbleGreen', s:palette.bg0, s:palette.green)
-call gruvbox_material#highlight('OctoBubbleRed', s:palette.bg0, s:palette.red)
-call gruvbox_material#highlight('OctoBubblePurple', s:palette.bg0, s:palette.purple)
-call gruvbox_material#highlight('OctoBubbleYellow', s:palette.bg0, s:palette.yellow)
-call gruvbox_material#highlight('OctoBubbleBlue', s:palette.bg0, s:palette.blue)
-call gruvbox_material#highlight('OctoBubbleGrey', s:palette.bg0, s:palette.grey1)
-highlight! link OctoGreen Green
-highlight! link OctoRed Red
-highlight! link OctoPurple Purple
-highlight! link OctoYellow Yellow
-highlight! link OctoBlue Blue
-highlight! link OctoGrey Grey
-highlight! link OctoBubbleDelimiterGreen Green
-highlight! link OctoBubbleDelimiterRed Red
-highlight! link OctoBubbleDelimiterPurple Purple
-highlight! link OctoBubbleDelimiterYellow Yellow
-highlight! link OctoBubbleDelimiterBlue Blue
-highlight! link OctoBubbleDelimiterGrey Grey
+" syn_begin: packer {{{
+" https://github.com/wbthomason/packer.nvim
+highlight! link packerSuccess Aqua
+highlight! link packerFail Red
+highlight! link packerStatusSuccess Fg
+highlight! link packerStatusFail Fg
+highlight! link packerWorking Yellow
+highlight! link packerString Yellow
+highlight! link packerPackageNotLoaded Grey
+highlight! link packerRelDate Grey
+highlight! link packerPackageName Green
+highlight! link packerOutput Orange
+highlight! link packerHash Green
+highlight! link packerTimeTrivial Blue
+highlight! link packerTimeHigh Red
+highlight! link packerTimeMedium Yellow
+highlight! link packerTimeLow Green
 " syn_end }}}
 " syn_begin: netrw {{{
 " https://www.vim.org/scripts/script.php?script_id=1075
@@ -779,28 +859,6 @@ highlight! link netrwHelpCmd Blue
 highlight! link netrwCmdSep Grey
 highlight! link netrwVersion Orange
 " syn_end }}}
-" syn_begin: startify/quickmenu {{{
-" https://github.com/mhinz/vim-startify
-" https://github.com/skywind3000/quickmenu.vim
-highlight! link StartifyBracket Grey
-highlight! link StartifyFile Fg
-highlight! link StartifyNumber Red
-highlight! link StartifyPath Green
-highlight! link StartifySlash Green
-highlight! link StartifySection Yellow
-highlight! link StartifyHeader Orange
-highlight! link StartifySpecial Grey
-highlight! link StartifyFooter Grey
-" syn_end }}}
-" syn_begin: quickmenu {{{
-" https://github.com/skywind3000/quickmenu.vim
-highlight! link QuickmenuOption Green
-highlight! link QuickmenuNumber Red
-highlight! link QuickmenuBracket Grey
-highlight! link QuickmenuHelp Green
-highlight! link QuickmenuSpecial Purple
-highlight! link QuickmenuHeader Orange
-" syn_end }}}
 " syn_begin: undotree {{{
 " https://github.com/mbbill/undotree
 call gruvbox_material#highlight('UndotreeSavedBig', s:palette.purple, s:palette.none, 'bold')
@@ -813,57 +871,6 @@ highlight! link UndotreeHead Yellow
 highlight! link UndotreeBranch Yellow
 highlight! link UndotreeCurrent Aqua
 highlight! link UndotreeSavedSmall Purple
-" syn_end }}}
-" syn_begin: dashboard {{{
-" https://github.com/glepnir/dashboard-nvim
-highlight! link DashboardHeader Yellow
-highlight! link DashboardCenter Green
-highlight! link DashboardShortcut Red
-highlight! link DashboardFooter Orange
-" syn_end }}}
-" syn_begin: markdown {{{
-" builtin: {{{
-call gruvbox_material#highlight('markdownH1', s:palette.red, s:palette.none, 'bold')
-call gruvbox_material#highlight('markdownH2', s:palette.orange, s:palette.none, 'bold')
-call gruvbox_material#highlight('markdownH3', s:palette.yellow, s:palette.none, 'bold')
-call gruvbox_material#highlight('markdownH4', s:palette.green, s:palette.none, 'bold')
-call gruvbox_material#highlight('markdownH5', s:palette.blue, s:palette.none, 'bold')
-call gruvbox_material#highlight('markdownH6', s:palette.purple, s:palette.none, 'bold')
-call gruvbox_material#highlight('markdownUrl', s:palette.blue, s:palette.none, 'underline')
-call gruvbox_material#highlight('markdownItalic', s:palette.none, s:palette.none, 'italic')
-call gruvbox_material#highlight('markdownBold', s:palette.none, s:palette.none, 'bold')
-call gruvbox_material#highlight('markdownItalicDelimiter', s:palette.grey1, s:palette.none, 'italic')
-highlight! link markdownCode Green
-highlight! link markdownCodeBlock Aqua
-highlight! link markdownCodeDelimiter Aqua
-highlight! link markdownBlockquote Grey
-highlight! link markdownListMarker Red
-highlight! link markdownOrderedListMarker Red
-highlight! link markdownRule Purple
-highlight! link markdownHeadingRule Grey
-highlight! link markdownUrlDelimiter Grey
-highlight! link markdownLinkDelimiter Grey
-highlight! link markdownLinkTextDelimiter Grey
-highlight! link markdownHeadingDelimiter Grey
-highlight! link markdownLinkText Purple
-highlight! link markdownUrlTitleDelimiter Green
-highlight! link markdownIdDeclaration markdownLinkText
-highlight! link markdownBoldDelimiter Grey
-highlight! link markdownId Yellow
-" }}}
-" vim-markdown: https://github.com/gabrielelana/vim-markdown {{{
-call gruvbox_material#highlight('mkdURL', s:palette.blue, s:palette.none, 'underline')
-call gruvbox_material#highlight('mkdInlineURL', s:palette.purple, s:palette.none, 'underline')
-call gruvbox_material#highlight('mkdItalic', s:palette.grey1, s:palette.none, 'italic')
-highlight! link mkdCodeDelimiter Aqua
-highlight! link mkdBold Grey
-highlight! link mkdLink Purple
-highlight! link mkdHeading Grey
-highlight! link mkdListItem Red
-highlight! link mkdRule Purple
-highlight! link mkdDelimiter Grey
-highlight! link mkdId Yellow
-" }}}
 " syn_end }}}
 " syn_begin: vimwiki {{{
 call gruvbox_material#highlight('VimwikiHeader1', s:palette.red, s:palette.none, 'bold')
@@ -885,14 +892,6 @@ highlight! link VimwikiMarkers Grey
 highlight! link VimwikiPre Green
 highlight! link VimwikiPreDelim Green
 highlight! link VimwikiNoExistsLink Red
-" syn_end }}}
-" syn_begin: rst {{{
-" builtin: https://github.com/marshallward/vim-restructuredtext {{{
-call gruvbox_material#highlight('rstStandaloneHyperlink', s:palette.purple, s:palette.none, 'underline')
-highlight! link rstSubstitutionReference Blue
-highlight! link rstInterpretedTextOrHyperlinkReference Aqua
-highlight! link rstTableLines Grey
-" }}}
 " syn_end }}}
 " syn_begin: tex {{{
 " builtin: http://www.drchip.org/astronaut/vim/index.html#SYNTAX_TEX {{{
@@ -970,67 +969,6 @@ highlight! link xmlCdataStart Grey
 highlight! link xmlCdataCdata Purple
 " }}}
 " syn_end }}}
-" syn_begin: css/scss/sass/less {{{
-" builtin: https://github.com/JulesWang/css.vim {{{
-highlight! link cssAttrComma Fg
-highlight! link cssBraces Fg
-highlight! link cssTagName PurpleItalic
-highlight! link cssClassNameDot Red
-highlight! link cssClassName RedItalic
-highlight! link cssFunctionName Yellow
-highlight! link cssAttr Orange
-highlight! link cssProp Aqua
-highlight! link cssCommonAttr Yellow
-highlight! link cssPseudoClassId Blue
-highlight! link cssPseudoClassFn Green
-highlight! link cssPseudoClass Purple
-highlight! link cssImportant RedItalic
-highlight! link cssSelectorOp Orange
-highlight! link cssSelectorOp2 Orange
-highlight! link cssColor Green
-highlight! link cssAttributeSelector Aqua
-highlight! link cssUnitDecorators Orange
-highlight! link cssValueLength Green
-highlight! link cssValueInteger Green
-highlight! link cssValueNumber Green
-highlight! link cssValueAngle Green
-highlight! link cssValueTime Green
-highlight! link cssValueFrequency Green
-highlight! link cssVendor Grey
-highlight! link cssNoise Grey
-" }}}
-" syn_end }}}
-" syn_begin: scss {{{
-" scss-syntax: https://github.com/cakebaker/scss-syntax.vim {{{
-highlight! link scssMixinName Yellow
-highlight! link scssSelectorChar Red
-highlight! link scssSelectorName RedItalic
-highlight! link scssInterpolationDelimiter Green
-highlight! link scssVariableValue Green
-highlight! link scssNull Purple
-highlight! link scssBoolean Purple
-highlight! link scssVariableAssignment Grey
-highlight! link scssForKeyword PurpleItalic
-highlight! link scssAttribute Orange
-highlight! link scssFunctionName Yellow
-" }}}
-" syn_end }}}
-" syn_begin: sass {{{
-" builtin: {{{
-highlight! link sassProperty Aqua
-highlight! link sassAmpersand Orange
-highlight! link sassClass RedItalic
-highlight! link sassClassChar Red
-highlight! link sassMixing PurpleItalic
-highlight! link sassMixinName Orange
-highlight! link sassCssAttribute Yellow
-highlight! link sassInterpolationDelimiter Green
-highlight! link sassFunction Yellow
-highlight! link sassControl RedItalic
-highlight! link sassFor RedItalic
-highlight! link sassFunctionName GreenBold
-" }}}
-" syn_end }}}
 " syn_begin: less {{{
 " vim-less: https://github.com/groenewege/vim-less {{{
 highlight! link lessMixinChar Grey
@@ -1038,405 +976,6 @@ highlight! link lessClass RedItalic
 highlight! link lessVariable Blue
 highlight! link lessAmpersandChar Orange
 highlight! link lessFunction Yellow
-" }}}
-" syn_end }}}
-" syn_begin: javascript/javascriptreact {{{
-" builtin: http://www.fleiner.com/vim/syntax/javascript.vim {{{
-highlight! link javaScriptNull Aqua
-highlight! link javaScriptIdentifier Orange
-highlight! link javaScriptParens Fg
-highlight! link javaScriptBraces Fg
-highlight! link javaScriptGlobal Purple
-highlight! link javaScriptMessage Yellow
-highlight! link javaScriptFunction RedItalic
-highlight! link javaScriptOperator Orange
-highlight! link javaScriptMember Aqua
-" }}}
-" vim-javascript: https://github.com/pangloss/vim-javascript {{{
-highlight! link jsThis Purple
-highlight! link jsUndefined Aqua
-highlight! link jsNull Aqua
-highlight! link jsNan Aqua
-highlight! link jsSuper Purple
-highlight! link jsPrototype Purple
-highlight! link jsFunction RedItalic
-highlight! link jsGlobalNodeObjects PurpleItalic
-highlight! link jsGlobalObjects Yellow
-highlight! link jsArrowFunction Purple
-highlight! link jsArrowFuncArgs Blue
-highlight! link jsFuncArgs Blue
-highlight! link jsObjectProp Aqua
-highlight! link jsVariableDef Blue
-highlight! link jsObjectKey Aqua
-highlight! link jsParen Blue
-highlight! link jsParenIfElse Blue
-highlight! link jsParenRepeat Blue
-highlight! link jsParenSwitch Blue
-highlight! link jsParenCatch Blue
-highlight! link jsBracket Blue
-highlight! link jsBlockLabel Aqua
-highlight! link jsFunctionKey GreenBold
-highlight! link jsClassDefinition Yellow
-highlight! link jsDot Grey
-highlight! link jsDestructuringBlock Blue
-highlight! link jsSpreadExpression Purple
-highlight! link jsSpreadOperator Green
-highlight! link jsModuleKeyword Yellow
-highlight! link jsObjectValue Blue
-highlight! link jsTemplateExpression Yellow
-highlight! link jsTemplateBraces Yellow
-highlight! link jsClassMethodType Orange
-" }}}
-" nvim-treesitter/nvim-treesitter {{{
-if has('nvim-0.9.0')
-  highlight! link @lsp.typemod.variable.defaultLibrary.javascript TSConstBuiltin
-  highlight! link @lsp.typemod.variable.defaultLibrary.javascriptreact TSConstBuiltin
-endif
-" }}}
-" yajs: https://github.com/othree/yajs.vim {{{
-highlight! link javascriptEndColons Fg
-highlight! link javascriptOpSymbol Orange
-highlight! link javascriptOpSymbols Orange
-highlight! link javascriptIdentifierName Blue
-highlight! link javascriptVariable Orange
-highlight! link javascriptObjectLabel Aqua
-highlight! link javascriptObjectLabelColon Grey
-highlight! link javascriptPropertyNameString Aqua
-highlight! link javascriptFuncArg Blue
-highlight! link javascriptIdentifier Purple
-highlight! link javascriptArrowFunc Purple
-highlight! link javascriptTemplate Yellow
-highlight! link javascriptTemplateSubstitution Yellow
-highlight! link javascriptTemplateSB Yellow
-highlight! link javascriptNodeGlobal PurpleItalic
-highlight! link javascriptDocTags PurpleItalic
-highlight! link javascriptDocNotation Purple
-highlight! link javascriptClassSuper Purple
-highlight! link javascriptClassName Yellow
-highlight! link javascriptClassSuperName Yellow
-highlight! link javascriptBrackets Fg
-highlight! link javascriptBraces Fg
-highlight! link javascriptLabel Purple
-highlight! link javascriptDotNotation Grey
-highlight! link javascriptGlobalArrayDot Grey
-highlight! link javascriptGlobalBigIntDot Grey
-highlight! link javascriptGlobalDateDot Grey
-highlight! link javascriptGlobalJSONDot Grey
-highlight! link javascriptGlobalMathDot Grey
-highlight! link javascriptGlobalNumberDot Grey
-highlight! link javascriptGlobalObjectDot Grey
-highlight! link javascriptGlobalPromiseDot Grey
-highlight! link javascriptGlobalRegExpDot Grey
-highlight! link javascriptGlobalStringDot Grey
-highlight! link javascriptGlobalSymbolDot Grey
-highlight! link javascriptGlobalURLDot Grey
-highlight! link javascriptMethod GreenBold
-highlight! link javascriptMethodName GreenBold
-highlight! link javascriptObjectMethodName GreenBold
-highlight! link javascriptGlobalMethod GreenBold
-highlight! link javascriptDOMStorageMethod GreenBold
-highlight! link javascriptFileMethod GreenBold
-highlight! link javascriptFileReaderMethod GreenBold
-highlight! link javascriptFileListMethod GreenBold
-highlight! link javascriptBlobMethod GreenBold
-highlight! link javascriptURLStaticMethod GreenBold
-highlight! link javascriptNumberStaticMethod GreenBold
-highlight! link javascriptNumberMethod GreenBold
-highlight! link javascriptDOMNodeMethod GreenBold
-highlight! link javascriptES6BigIntStaticMethod GreenBold
-highlight! link javascriptBOMWindowMethod GreenBold
-highlight! link javascriptHeadersMethod GreenBold
-highlight! link javascriptRequestMethod GreenBold
-highlight! link javascriptResponseMethod GreenBold
-highlight! link javascriptES6SetMethod GreenBold
-highlight! link javascriptReflectMethod GreenBold
-highlight! link javascriptPaymentMethod GreenBold
-highlight! link javascriptPaymentResponseMethod GreenBold
-highlight! link javascriptTypedArrayStaticMethod GreenBold
-highlight! link javascriptGeolocationMethod GreenBold
-highlight! link javascriptES6MapMethod GreenBold
-highlight! link javascriptServiceWorkerMethod GreenBold
-highlight! link javascriptCacheMethod GreenBold
-highlight! link javascriptFunctionMethod GreenBold
-highlight! link javascriptXHRMethod GreenBold
-highlight! link javascriptBOMNavigatorMethod GreenBold
-highlight! link javascriptServiceWorkerMethod GreenBold
-highlight! link javascriptDOMEventTargetMethod GreenBold
-highlight! link javascriptDOMEventMethod GreenBold
-highlight! link javascriptIntlMethod GreenBold
-highlight! link javascriptDOMDocMethod GreenBold
-highlight! link javascriptStringStaticMethod GreenBold
-highlight! link javascriptStringMethod GreenBold
-highlight! link javascriptSymbolStaticMethod GreenBold
-highlight! link javascriptRegExpMethod GreenBold
-highlight! link javascriptObjectStaticMethod GreenBold
-highlight! link javascriptObjectMethod GreenBold
-highlight! link javascriptBOMLocationMethod GreenBold
-highlight! link javascriptJSONStaticMethod GreenBold
-highlight! link javascriptGeneratorMethod GreenBold
-highlight! link javascriptEncodingMethod GreenBold
-highlight! link javascriptPromiseStaticMethod GreenBold
-highlight! link javascriptPromiseMethod GreenBold
-highlight! link javascriptBOMHistoryMethod GreenBold
-highlight! link javascriptDOMFormMethod GreenBold
-highlight! link javascriptClipboardMethod GreenBold
-highlight! link javascriptTypedArrayStaticMethod GreenBold
-highlight! link javascriptBroadcastMethod GreenBold
-highlight! link javascriptDateStaticMethod GreenBold
-highlight! link javascriptDateMethod GreenBold
-highlight! link javascriptConsoleMethod GreenBold
-highlight! link javascriptArrayStaticMethod GreenBold
-highlight! link javascriptArrayMethod GreenBold
-highlight! link javascriptMathStaticMethod GreenBold
-highlight! link javascriptSubtleCryptoMethod GreenBold
-highlight! link javascriptCryptoMethod GreenBold
-highlight! link javascriptProp Aqua
-highlight! link javascriptBOMWindowProp Aqua
-highlight! link javascriptDOMStorageProp Aqua
-highlight! link javascriptFileReaderProp Aqua
-highlight! link javascriptURLUtilsProp Aqua
-highlight! link javascriptNumberStaticProp Aqua
-highlight! link javascriptDOMNodeProp Aqua
-highlight! link javascriptRequestProp Aqua
-highlight! link javascriptResponseProp Aqua
-highlight! link javascriptES6SetProp Aqua
-highlight! link javascriptPaymentProp Aqua
-highlight! link javascriptPaymentResponseProp Aqua
-highlight! link javascriptPaymentAddressProp Aqua
-highlight! link javascriptPaymentShippingOptionProp Aqua
-highlight! link javascriptTypedArrayStaticProp Aqua
-highlight! link javascriptServiceWorkerProp Aqua
-highlight! link javascriptES6MapProp Aqua
-highlight! link javascriptRegExpStaticProp Aqua
-highlight! link javascriptRegExpProp Aqua
-highlight! link javascriptXHRProp Aqua
-highlight! link javascriptBOMNavigatorProp GreenBold
-highlight! link javascriptDOMEventProp Aqua
-highlight! link javascriptBOMNetworkProp Aqua
-highlight! link javascriptDOMDocProp Aqua
-highlight! link javascriptSymbolStaticProp Aqua
-highlight! link javascriptSymbolProp Aqua
-highlight! link javascriptBOMLocationProp Aqua
-highlight! link javascriptEncodingProp Aqua
-highlight! link javascriptCryptoProp Aqua
-highlight! link javascriptBOMHistoryProp Aqua
-highlight! link javascriptDOMFormProp Aqua
-highlight! link javascriptDataViewProp Aqua
-highlight! link javascriptBroadcastProp Aqua
-highlight! link javascriptMathStaticProp Aqua
-" }}}
-" vim-jsx-pretty: https://github.com/maxmellon/vim-jsx-pretty {{{
-highlight! link jsxTagName OrangeItalic
-highlight! link jsxOpenPunct Green
-highlight! link jsxClosePunct Blue
-highlight! link jsxEscapeJs Blue
-highlight! link jsxAttrib Aqua
-" }}}
-" syn_end }}}
-" syn_begin: typescript/typescriptreact {{{
-" vim-typescript: https://github.com/leafgarland/typescript-vim {{{
-highlight! link typescriptSource PurpleItalic
-highlight! link typescriptMessage Yellow
-highlight! link typescriptGlobalObjects Aqua
-highlight! link typescriptInterpolation Yellow
-highlight! link typescriptInterpolationDelimiter Yellow
-highlight! link typescriptBraces Fg
-highlight! link typescriptParens Fg
-" }}}
-" yats: https:github.com/HerringtonDarkholme/yats.vim {{{
-highlight! link typescriptMethodAccessor OrangeItalic
-highlight! link typescriptVariable Orange
-highlight! link typescriptVariableDeclaration Blue
-highlight! link typescriptTypeReference Yellow
-highlight! link typescriptBraces Fg
-highlight! link typescriptEnumKeyword RedItalic
-highlight! link typescriptEnum Yellow
-highlight! link typescriptIdentifierName Aqua
-highlight! link typescriptProp Aqua
-highlight! link typescriptCall Blue
-highlight! link typescriptInterfaceName Yellow
-highlight! link typescriptEndColons Fg
-highlight! link typescriptMember Aqua
-highlight! link typescriptMemberOptionality Orange
-highlight! link typescriptObjectLabel Aqua
-highlight! link typescriptArrowFunc Purple
-highlight! link typescriptAbstract Orange
-highlight! link typescriptObjectColon Grey
-highlight! link typescriptTypeAnnotation Grey
-highlight! link typescriptAssign Orange
-highlight! link typescriptBinaryOp Orange
-highlight! link typescriptUnaryOp Orange
-highlight! link typescriptFuncComma Fg
-highlight! link typescriptClassName Yellow
-highlight! link typescriptClassHeritage Yellow
-highlight! link typescriptInterfaceHeritage Yellow
-highlight! link typescriptIdentifier Purple
-highlight! link typescriptGlobal Purple
-highlight! link typescriptOperator RedItalic
-highlight! link typescriptNodeGlobal PurpleItalic
-highlight! link typescriptExport PurpleItalic
-highlight! link typescriptDefaultParam Orange
-highlight! link typescriptImport PurpleItalic
-highlight! link typescriptTypeParameter Yellow
-highlight! link typescriptReadonlyModifier Orange
-highlight! link typescriptAccessibilityModifier Orange
-highlight! link typescriptAmbientDeclaration RedItalic
-highlight! link typescriptTemplateSubstitution Yellow
-highlight! link typescriptTemplateSB Yellow
-highlight! link typescriptExceptions RedItalic
-highlight! link typescriptCastKeyword RedItalic
-highlight! link typescriptOptionalMark Orange
-highlight! link typescriptNull Aqua
-highlight! link typescriptMappedIn RedItalic
-highlight! link typescriptFuncTypeArrow Purple
-highlight! link typescriptTernaryOp Orange
-highlight! link typescriptParenExp Blue
-highlight! link typescriptIndexExpr Blue
-highlight! link typescriptDotNotation Grey
-highlight! link typescriptGlobalNumberDot Grey
-highlight! link typescriptGlobalStringDot Grey
-highlight! link typescriptGlobalArrayDot Grey
-highlight! link typescriptGlobalObjectDot Grey
-highlight! link typescriptGlobalSymbolDot Grey
-highlight! link typescriptGlobalMathDot Grey
-highlight! link typescriptGlobalDateDot Grey
-highlight! link typescriptGlobalJSONDot Grey
-highlight! link typescriptGlobalRegExpDot Grey
-highlight! link typescriptGlobalPromiseDot Grey
-highlight! link typescriptGlobalURLDot Grey
-highlight! link typescriptGlobalMethod GreenBold
-highlight! link typescriptDOMStorageMethod GreenBold
-highlight! link typescriptFileMethod GreenBold
-highlight! link typescriptFileReaderMethod GreenBold
-highlight! link typescriptFileListMethod GreenBold
-highlight! link typescriptBlobMethod GreenBold
-highlight! link typescriptURLStaticMethod GreenBold
-highlight! link typescriptNumberStaticMethod GreenBold
-highlight! link typescriptNumberMethod GreenBold
-highlight! link typescriptDOMNodeMethod GreenBold
-highlight! link typescriptPaymentMethod GreenBold
-highlight! link typescriptPaymentResponseMethod GreenBold
-highlight! link typescriptHeadersMethod GreenBold
-highlight! link typescriptRequestMethod GreenBold
-highlight! link typescriptResponseMethod GreenBold
-highlight! link typescriptES6SetMethod GreenBold
-highlight! link typescriptReflectMethod GreenBold
-highlight! link typescriptBOMWindowMethod GreenBold
-highlight! link typescriptGeolocationMethod GreenBold
-highlight! link typescriptServiceWorkerMethod GreenBold
-highlight! link typescriptCacheMethod GreenBold
-highlight! link typescriptES6MapMethod GreenBold
-highlight! link typescriptFunctionMethod GreenBold
-highlight! link typescriptRegExpMethod GreenBold
-highlight! link typescriptXHRMethod GreenBold
-highlight! link typescriptBOMNavigatorMethod GreenBold
-highlight! link typescriptServiceWorkerMethod GreenBold
-highlight! link typescriptIntlMethod GreenBold
-highlight! link typescriptDOMEventTargetMethod GreenBold
-highlight! link typescriptDOMEventMethod GreenBold
-highlight! link typescriptDOMDocMethod GreenBold
-highlight! link typescriptStringStaticMethod GreenBold
-highlight! link typescriptStringMethod GreenBold
-highlight! link typescriptSymbolStaticMethod GreenBold
-highlight! link typescriptObjectStaticMethod GreenBold
-highlight! link typescriptObjectMethod GreenBold
-highlight! link typescriptJSONStaticMethod GreenBold
-highlight! link typescriptEncodingMethod GreenBold
-highlight! link typescriptBOMLocationMethod GreenBold
-highlight! link typescriptPromiseStaticMethod GreenBold
-highlight! link typescriptPromiseMethod GreenBold
-highlight! link typescriptSubtleCryptoMethod GreenBold
-highlight! link typescriptCryptoMethod GreenBold
-highlight! link typescriptBOMHistoryMethod GreenBold
-highlight! link typescriptDOMFormMethod GreenBold
-highlight! link typescriptConsoleMethod GreenBold
-highlight! link typescriptDateStaticMethod GreenBold
-highlight! link typescriptDateMethod GreenBold
-highlight! link typescriptArrayStaticMethod GreenBold
-highlight! link typescriptArrayMethod GreenBold
-highlight! link typescriptMathStaticMethod GreenBold
-highlight! link typescriptStringProperty Aqua
-highlight! link typescriptDOMStorageProp Aqua
-highlight! link typescriptFileReaderProp Aqua
-highlight! link typescriptURLUtilsProp Aqua
-highlight! link typescriptNumberStaticProp Aqua
-highlight! link typescriptDOMNodeProp Aqua
-highlight! link typescriptBOMWindowProp Aqua
-highlight! link typescriptRequestProp Aqua
-highlight! link typescriptResponseProp Aqua
-highlight! link typescriptPaymentProp Aqua
-highlight! link typescriptPaymentResponseProp Aqua
-highlight! link typescriptPaymentAddressProp Aqua
-highlight! link typescriptPaymentShippingOptionProp Aqua
-highlight! link typescriptES6SetProp Aqua
-highlight! link typescriptServiceWorkerProp Aqua
-highlight! link typescriptES6MapProp Aqua
-highlight! link typescriptRegExpStaticProp Aqua
-highlight! link typescriptRegExpProp Aqua
-highlight! link typescriptBOMNavigatorProp GreenBold
-highlight! link typescriptXHRProp Aqua
-highlight! link typescriptDOMEventProp Aqua
-highlight! link typescriptDOMDocProp Aqua
-highlight! link typescriptBOMNetworkProp Aqua
-highlight! link typescriptSymbolStaticProp Aqua
-highlight! link typescriptEncodingProp Aqua
-highlight! link typescriptBOMLocationProp Aqua
-highlight! link typescriptCryptoProp Aqua
-highlight! link typescriptDOMFormProp Aqua
-highlight! link typescriptBOMHistoryProp Aqua
-highlight! link typescriptMathStaticProp Aqua
-" }}}
-" nvim-treesitter/nvim-treesitter {{{
-highlight! link tsxTSConstructor TSType
-if has('nvim-0.8.0')
-  highlight! link @constructor.tsx tsxTSConstructor
-endif
-if has('nvim-0.9.0')
-  highlight! link @lsp.typemod.variable.defaultLibrary.typescript TSConstBuiltin
-  highlight! link @lsp.typemod.variable.defaultLibrary.typescriptreact TSConstBuiltin
-endif
-" }}}
-" syn_end }}}
-" syn_begin: dart {{{
-" dart-lang: https://github.com/dart-lang/dart-vim-plugin {{{
-highlight! link dartCoreClasses Aqua
-highlight! link dartTypeName Aqua
-highlight! link dartInterpolation Blue
-highlight! link dartTypeDef RedItalic
-highlight! link dartClassDecl RedItalic
-highlight! link dartLibrary PurpleItalic
-highlight! link dartMetadata Blue
-" }}}
-" syn_end }}}
-" syn_begin: coffee {{{
-" vim-coffee-script: https://github.com/kchmck/vim-coffee-script {{{
-highlight! link coffeeExtendedOp Orange
-highlight! link coffeeSpecialOp Fg
-highlight! link coffeeDotAccess Grey
-highlight! link coffeeCurly Fg
-highlight! link coffeeParen Fg
-highlight! link coffeeBracket Fg
-highlight! link coffeeParens Blue
-highlight! link coffeeBrackets Blue
-highlight! link coffeeCurlies Blue
-highlight! link coffeeOperator RedItalic
-highlight! link coffeeStatement Orange
-highlight! link coffeeSpecialIdent Purple
-highlight! link coffeeObject Purple
-highlight! link coffeeObjAssign Aqua
-" }}}
-" syn_end }}}
-" syn_begin: purescript {{{
-" purescript-vim: https://github.com/purescript-contrib/purescript-vim {{{
-highlight! link purescriptModuleKeyword PurpleItalic
-highlight! link purescriptModule Aqua
-highlight! link purescriptModuleParams Blue
-highlight! link purescriptAsKeyword OrangeItalic
-highlight! link purescriptHidingKeyword OrangeItalic
-highlight! link purescriptWhere OrangeItalic
-highlight! link purescriptIdentifier Blue
-highlight! link purescriptFunction Yellow
-highlight! link purescriptType Aqua
 " }}}
 " syn_end }}}
 " syn_begin: c/cpp/objc/objcpp {{{
@@ -1470,17 +1009,6 @@ highlight! link LspCxxHlSkippedRegionBeginEnd TSKeyword
 highlight! link LspCxxHlGroupEnumConstant BlueItalic
 highlight! link LspCxxHlGroupNamespace TSNamespace
 highlight! link LspCxxHlGroupMemberVariable TSVariable
-" }}}
-" syn_end }}}
-" syn_begin: objc {{{
-" builtin: {{{
-highlight! link objcModuleImport PurpleItalic
-highlight! link objcException RedItalic
-highlight! link objcProtocolList Aqua
-highlight! link objcObjDef PurpleItalic
-highlight! link objcDirective RedItalic
-highlight! link objcPropertyAttribute Orange
-highlight! link objcHiddenArgument Aqua
 " }}}
 " syn_end }}}
 " syn_begin: cs {{{
@@ -1561,17 +1089,6 @@ highlight! link luaTSConstructor luaBraces
 if has('nvim-0.8.0')
   highlight! link @constructor.lua luaTSConstructor
 endif
-" }}}
-" syn_end }}}
-" syn_begin: moon {{{
-" moonscript-vim: https://github.com/leafo/moonscript-vim {{{
-highlight! link moonInterpDelim Yellow
-highlight! link moonInterp Blue
-highlight! link moonFunction Green
-highlight! link moonLuaFunc AquaBold
-highlight! link moonSpecialVar Purple
-highlight! link moonObject Yellow
-highlight! link moonDotAccess Grey
 " }}}
 " syn_end }}}
 " syn_begin: java {{{
@@ -1671,148 +1188,6 @@ highlight! link swiftTypeDeclaration Orange
 highlight! link swiftClosureArgument Purple
 " }}}
 " syn_end }}}
-" syn_begin: php {{{
-" builtin: https://jasonwoof.com/gitweb/?p=vim-syntax.git;a=blob;f=php.vim;hb=HEAD {{{
-highlight! link phpVarSelector Blue
-highlight! link phpDefine OrangeItalic
-highlight! link phpStructure RedItalic
-highlight! link phpSpecialFunction GreenBold
-highlight! link phpInterpSimpleCurly Yellow
-highlight! link phpComparison Orange
-highlight! link phpMethodsVar Aqua
-highlight! link phpMemberSelector Green
-" }}}
-" php.vim: https://github.com/StanAngeloff/php.vim {{{
-highlight! link phpParent Fg
-highlight! link phpNowDoc Green
-highlight! link phpFunction GreenBold
-highlight! link phpMethod GreenBold
-highlight! link phpClass Orange
-highlight! link phpSuperglobals Purple
-" }}}
-" syn_end }}}
-" syn_begin: ruby {{{
-" builtin: https://github.com/vim-ruby/vim-ruby {{{
-highlight! link rubyKeywordAsMethod GreenBold
-highlight! link rubyInterpolation Yellow
-highlight! link rubyInterpolationDelimiter Yellow
-highlight! link rubyStringDelimiter Green
-highlight! link rubyBlockParameterList Blue
-highlight! link rubyDefine RedItalic
-highlight! link rubyModuleName Purple
-highlight! link rubyAccess Orange
-highlight! link rubyAttribute Yellow
-highlight! link rubyMacro RedItalic
-" }}}
-" syn_end }}}
-" syn_begin: haskell {{{
-" haskell-vim: https://github.com/neovimhaskell/haskell-vim {{{
-highlight! link haskellBrackets Blue
-highlight! link haskellIdentifier Yellow
-highlight! link haskellAssocType Aqua
-highlight! link haskellQuotedType Aqua
-highlight! link haskellType Aqua
-highlight! link haskellDeclKeyword RedItalic
-highlight! link haskellWhere RedItalic
-highlight! link haskellDeriving PurpleItalic
-highlight! link haskellForeignKeywords PurpleItalic
-" }}}
-" syn_end }}}
-" syn_begin: perl/pod {{{
-" builtin: https://github.com/vim-perl/vim-perl {{{
-highlight! link perlStatementPackage PurpleItalic
-highlight! link perlStatementInclude PurpleItalic
-highlight! link perlStatementStorage Orange
-highlight! link perlStatementList Orange
-highlight! link perlMatchStartEnd Orange
-highlight! link perlVarSimpleMemberName Aqua
-highlight! link perlVarSimpleMember Fg
-highlight! link perlMethod GreenBold
-highlight! link podVerbatimLine Green
-highlight! link podCmdText Yellow
-" }}}
-" syn_end }}}
-" syn_begin: ocaml {{{
-" builtin: https://github.com/rgrinberg/vim-ocaml {{{
-highlight! link ocamlArrow Orange
-highlight! link ocamlEqual Orange
-highlight! link ocamlOperator Orange
-highlight! link ocamlKeyChar Orange
-highlight! link ocamlModPath Green
-highlight! link ocamlFullMod Green
-highlight! link ocamlModule Purple
-highlight! link ocamlConstructor Aqua
-highlight! link ocamlFuncWith Yellow
-highlight! link ocamlWith Yellow
-highlight! link ocamlModParam Fg
-highlight! link ocamlModParam1 Fg
-highlight! link ocamlAnyVar Blue
-highlight! link ocamlPpxEncl Orange
-highlight! link ocamlPpxIdentifier Blue
-highlight! link ocamlSigEncl Orange
-highlight! link ocamlStructEncl Aqua
-highlight! link ocamlModParam1 Blue
-" }}}
-" syn_end }}}
-" syn_begin: erlang {{{
-" builtin: https://github.com/vim-erlang/vim-erlang-runtime {{{
-highlight! link erlangAtom Aqua
-highlight! link erlangLocalFuncRef GreenBold
-highlight! link erlangLocalFuncCall GreenBold
-highlight! link erlangGlobalFuncRef GreenBold
-highlight! link erlangGlobalFuncCall GreenBold
-highlight! link erlangAttribute PurpleItalic
-highlight! link erlangPipe Orange
-" }}}
-" syn_end }}}
-" syn_begin: elixir {{{
-" vim-elixir: https://github.com/elixir-editors/vim-elixir {{{
-highlight! link elixirStringDelimiter Green
-highlight! link elixirKeyword Orange
-highlight! link elixirInterpolation Yellow
-highlight! link elixirInterpolationDelimiter Yellow
-highlight! link elixirSelf Purple
-highlight! link elixirPseudoVariable Purple
-highlight! link elixirModuleDefine PurpleItalic
-highlight! link elixirBlockDefinition RedItalic
-highlight! link elixirDefine RedItalic
-highlight! link elixirPrivateDefine RedItalic
-highlight! link elixirGuard RedItalic
-highlight! link elixirPrivateGuard RedItalic
-highlight! link elixirProtocolDefine RedItalic
-highlight! link elixirImplDefine RedItalic
-highlight! link elixirRecordDefine RedItalic
-highlight! link elixirPrivateRecordDefine RedItalic
-highlight! link elixirMacroDefine RedItalic
-highlight! link elixirPrivateMacroDefine RedItalic
-highlight! link elixirDelegateDefine RedItalic
-highlight! link elixirOverridableDefine RedItalic
-highlight! link elixirExceptionDefine RedItalic
-highlight! link elixirCallbackDefine RedItalic
-highlight! link elixirStructDefine RedItalic
-highlight! link elixirExUnitMacro RedItalic
-" }}}
-" syn_end }}}
-" syn_begin: lisp {{{
-" builtin: http://www.drchip.org/astronaut/vim/index.html#SYNTAX_LISP {{{
-highlight! link lispAtomMark Green
-highlight! link lispKey Aqua
-highlight! link lispFunc OrangeItalic
-" }}}
-" syn_end }}}
-" syn_begin: clojure {{{
-" builtin: https://github.com/guns/vim-clojure-static {{{
-highlight! link clojureMacro PurpleItalic
-highlight! link clojureFunc AquaBold
-highlight! link clojureConstant Yellow
-highlight! link clojureSpecial RedItalic
-highlight! link clojureDefine RedItalic
-highlight! link clojureKeyword Orange
-highlight! link clojureVariable Blue
-highlight! link clojureMeta Yellow
-highlight! link clojureDeref Yellow
-" }}}
-" syn_end }}}
 " syn_begin: matlab {{{
 " builtin: {{{
 highlight! link matlabSemicolon Fg
@@ -1864,13 +1239,6 @@ highlight! link zshFunction GreenBold
 highlight! link zshDeref Blue
 highlight! link zshTypes Orange
 highlight! link zshVariableDef Blue
-" }}}
-" syn_end }}}
-" syn_begin: fish {{{
-" vim-fish: https://github.com/georgewitteman/vim-fish {{{
-highlight! link fishStatement Orange
-highlight! link fishLabel RedItalic
-highlight! link fishCommandSub Yellow
 " }}}
 " syn_end }}}
 " syn_begin: ps1 {{{
@@ -2047,12 +1415,6 @@ if has('nvim-0.8.0')
   highlight! link @text.gitcommit TSNone
 endif
 " }}}
-" syn_end }}}
-" syn_begin: dosini {{{
-call gruvbox_material#highlight('dosiniHeader', s:palette.red, s:palette.none, 'bold')
-highlight! link dosiniLabel Yellow
-highlight! link dosiniValue Green
-highlight! link dosiniNumber Green
 " syn_end }}}
 " syn_begin: help {{{
 call gruvbox_material#highlight('helpNote', s:palette.purple, s:palette.none, 'bold')
